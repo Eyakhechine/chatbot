@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>feeling-detector-Bot</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <style>
+ * {
+  background-color: peachpuff;
+ box-sizing: border-box
+ }/* Set height of body and the document to 100% */
+ body, html {
+ height: 100%;
+ margin: 0;
+ font-family: Arial;
+ }
+ #chatbox {
+ margin-left: auto;
+ margin-right: auto;
+ width: 40%;
+ margin-top: 60px;
+ }
+ #userInput {
+ margin-left: auto;
+ margin-right: auto;
+ width: 40%;
+ margin-top: 60px;
+ }
+ #textInput {
+ width: 90%;
+ border: none;
+ border-bottom: 3px solid black;
+ font-family: monospace;
+ font-size: 17px;
+ }
+ .userText {
+ color: white;
+ font-family: monospace;
+ font-size: 17px;
+ text-align: right;
+ line-height: 30px;
+ }
+ .userText span {
+ background-color: #808080;
+ padding: 10px;
+ border-radius: 2px;
+ }
+ .botText {
+ color: white;
+ font-family: monospace;
+ font-size: 17px;
+ text-align: left;
+ line-height: 30px;
+ }
+ .botText span {
+ background-color: #e77f7f;
+ padding: 10px;
+ border-radius: 2px;
+ }
+ #tidbit {
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ width: 300px;
+ }
+ .boxed {
+ margin-left: auto;
+ margin-right: auto;
+ width: 78%;
+ margin-top: 115px;
+ border: 1px solid black;
+ }
+ </style>
+</head>
+
+<body>
+ <div>
+  <h1 align="center"><b>Welcome to feelings detector chatbot</b></h1>
+ <h4 align="center"><b>  </b></h4>
+ <div class="boxed">
+ <div>
+ <div id="chatbox">
+ <p class="botText">
+ <span>Hi!, you can speak to me or text me, and i can tell how you're feeling right now and maybe i'll try to help </span>
+ </p>
+ </div>
+ <div id="userInput">
+ <input id="textInput" type="text"  name="msg" placeholder="Message" />
+ </div>
+ </div>
+   <button id='btnGiveCommand'>Speak!</button>
+
+  </div>
+ </div>
+  <! -- a script for speech recognition, it calls get bot response script-->
+ <script>
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+        var mail = new SpeechRecognition();
+        mail.lang= 'en-US';
+        mail.interimResults = false;
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        document.getElementById("btnGiveCommand").onclick = function()
+        {
+         recognition.start();
+        }
+        recognition.onresult = function(event) {
+                 var last = event.results.length - 1;
+                 var command = event.results[last][0].transcript;
+                 getBotResponse(command);
+                }
+                document.getElementById("play").onclick= function()
+                {
+                 mail.start();
+                }
+                mail.onresult = function(event) {
+                  var last = event.results.length - 1;
+                  vm = event.results[last][0].transcript;
+                }
+
+
+
+ </script>
+
+  <! -- script for speech synthesis -->
+  <script>
+   function talkback(data) {
+   var synth = window.speechSynthesis;
+   voices = synth.getVoices[1];
+   var utterThis = new SpeechSynthesisUtterance(data);
+   utterThis.voice=voices;
+   synth.speak(utterThis);
+   }
+  </script>
+  <! -- script for talking user text msgs printing them, getting bot reply and printing them, it call speech synthesis script -->
+ <script>
+ function getBotResponse(rawText) {
+ var rawText = rawText;
+ var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+ $("#textInput").val("");
+ $("#chatbox").append(userHtml);
+ document
+ .getElementById("userInput")
+ .scrollIntoView({ block: "start", behavior: "smooth" });
+ $.get("/get", { msg: rawText }).done(function (data) {
+ var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+ talkback(data);
+ $("#chatbox").append(botHtml);
+ document
+ .getElementById("userInput")
+ .scrollIntoView({ block: "start", behavior: "smooth" });
+ });
+
+ }
+ $("#textInput").keypress(function (e) {
+ if (e.which == 13) {
+ getBotResponse($("#textInput").val());
+ }
+ });
+ </script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <title>FeelingDetectorChatbot</title>
+  <base href="/static/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+<link rel="stylesheet" href="app.component.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+
+<div>
+  <h1 align="center"> Welcome to feelings detector chatbot</h1>
+
+ <div class="boxed">
+ <div>
+ <div id="chatbox">
+ <p class="botText">
+ <span>Hi! , you can speak to me or text me, and i can tell how you're feeling right now and maybe i'll try to help </span> </p>
+
+
+<!-- affichage des messages  -->
+
+     <p class="userText">
+ <span>{{service.text}} </span> </p>
+       <p class="botText">
+ <span>{{textOutputs}} </span> </p>
+          <p class="userText">
+ <span> {{textInput}}</span> </p>
+             <p class="botText">
+ <span>{{textOutput}}</span> </p>
+
+
+<!-- speech recognition  -->
+
+ </div>
+ <div  id="userInput"  class="userText" >
+ <input id="textInput" type="text"  name="msg" placeholder="Message" [(ngModel)] = "textInput"/>
+ </div>
+
+   <button  class="favorite styled"  (click)="getReponses()">  Enter!</button>
+
+
+ </div>
+<div style="margin: 100px;">
+    <h1>Voice recognition</h1>
+    <button style="margin: 10px;" class="favorite styled" (click)="startService()">Start</button>
+    <button style="margin: 10px;" class="favorite styled" (click)="stopService()">Stop</button>
+    <p>{{service.text}}</p>
+</div>
+
+
+  </div>
+ </div>
+
+
+<!-- script audio  -->
+
+ <script>
+     navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(stream => {
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+
+    const audioChunks = [];
+    mediaRecorder.addEventListener("dataavailable", event => {
+      audioChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener("stop", () => {
+      const audioBlob = new Blob(audioChunks);
+    });
+
+    setTimeout(() => {
+      mediaRecorder.stop();
+    }, 3000);
+  });
+     </script>
+</body>
+</html>
