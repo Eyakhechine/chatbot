@@ -71,6 +71,7 @@ border: 4mm ridge rgb(189, 67, 67);
  margin-right: auto;
  width: 40%;
  margin-top: 60px;
+   color: #770a0c;
  }
  #textInput {
  width: 90%;
@@ -78,28 +79,29 @@ border: 4mm ridge rgb(189, 67, 67);
  border-bottom: 3px solid #653c3c;
  font-family: monospace;
  font-size: 17px;
+   color: #770a0c;
  }
  .userText {
- color: white;
+ color: #4b4040;
  font-family: monospace;
  font-size: 17px;
  text-align: right;
  line-height: 30px;
  }
  .userText span {
- background-color: #808080;
+ background-color: #ffffff;
  padding: 10px;
  border-radius: 2px;
  }
  .botText {
- color: white;
+ color: #f14e4e;
  font-family: monospace;
  font-size: 17px;
  text-align: left;
  line-height: 30px;
  }
  .botText span {
- background-color: #e77f7f;
+ background-color: #ffffff;
  padding: 10px;
  border-radius: 2px;
  }

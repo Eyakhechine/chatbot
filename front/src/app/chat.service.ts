@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ChatService {
-apiUrl= 'http://127.0.0.1:5000/get?msg=';
+apiUrl= 'http://127.0.0.:5000/get?msg=';
 
   constructor(private  _http:HttpClient) {}
 
