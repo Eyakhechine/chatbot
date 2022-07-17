@@ -60,6 +60,12 @@ border: 4mm ridge rgb(189, 67, 67);
  width: 40%;
  margin-top: 60px;
  }
+  #chatbox2 {
+ margin-left: auto;
+ margin-right: auto;
+ width: 40%;
+ margin-top: 60px;
+ }
  #userInput {
  margin-left: auto;
  margin-right: auto;

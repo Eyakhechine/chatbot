@@ -12,21 +12,17 @@
 <body>
 
 <div>
-  <h1 align="center"> Welcome to feelings detector chatbot</h1>
+  <h1 align="center"> Welcome to feelings detector chatbot with text and voice message</h1>
 
  <div class="boxed">
  <div>
  <div id="chatbox">
  <p class="botText">
- <span>Hi! , you can speak to me or text me, and i can tell how you're feeling right now and maybe i'll try to help </span> </p>
+ <span>Hi! , you can text me, and i can tell how you're feeling with quotes </span> </p>
 
 
 <!-- affichage des messages  -->
 
-     <p class="userText">
- <span>{{service.text}} </span> </p>
-       <p class="botText">
- <span>{{textOutputs}} </span> </p>
           <p class="userText">
  <span> {{textInput}}</span> </p>
              <p class="botText">
@@ -45,13 +41,38 @@
 
  </div>
 <div style="margin: 100px;">
-    <h1>Voice recognition</h1>
+    <h1 align="center" >Voice recognition</h1>
     <button style="margin: 10px;" class="favorite styled" (click)="startService()">Start</button>
     <button style="margin: 10px;" class="favorite styled" (click)="stopService()">Stop</button>
     <p>{{service.text}}</p>
 </div>
 
+ <div>
+ <div id="chatbox2">
+ <p class="botText">
+ <span>Hi! , you can speak to me , and i can tell how you're feeling with quotes </span> </p>
 
+
+<!-- affichage des messages  -->
+
+     <p class="userText">
+ <span>{{service.text}} </span> </p>
+       <p class="botText">
+ <span>{{textOutputs}} </span> </p>
+
+
+
+<!-- speech recognition  -->
+
+ </div>
+
+
+
+
+
+
+
+ </div>
   </div>
  </div>
 
