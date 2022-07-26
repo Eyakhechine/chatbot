@@ -15,7 +15,7 @@ nltk.download('popular', quiet=True) # for downloading packages
 #nltk.download('wordnet') # first-time use only
 
 
-f=open(r'C:\Users\EYA\PycharmProjects\feeling-detector-chatbot\scriptoffeelings.txt','r',errors = 'ignore')
+f=open(r'C:\Users\EYA\Desktop\chatbot\back\scriptoffeelings.txt','r',errors = 'ignore')
 raw=f.read()
 raw = raw.lower()# converts to lowercase
 
