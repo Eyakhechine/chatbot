@@ -1,5 +1,6 @@
 # chatbot
-application web conçue pour le traitement et la compréhension du langage naturel
+
+web application designed for natural language processing and understanding
 
 backend framework: flask
 python 
